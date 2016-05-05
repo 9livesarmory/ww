@@ -54,4 +54,9 @@ p {
 
 footer.page-footer {
   margin: 0;
+  background-color:#6AAFE6;
+}
+
+.btn {
+  background-color: #6AAFE6;
 }
