@@ -8,7 +8,7 @@ function initMap() {
   	var map = new google.maps.Map(document.getElementById('map'), {
     	center: myLatLng,
     	scrollwheel: true,
-    	zoom: 13
+    	zoom: 15
   	});
 
   	// Create a marker and set its position.
