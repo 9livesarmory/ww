@@ -21,7 +21,8 @@
         <li><a href="#">Contact</a></li>
 <!--         <li><a href="#" class="waves-effect waves-light btn">Sign Up</a></li>
         <li><a href="#" class="waves-effect waves-light btn">Log In</a></li> -->
-        <li><button data-target="modal1" class="btn js-modal-trigger waves-light">Sign Up</button></li>
+        <li><button data-target="modal1" class="btn js-modal-trigger waves-light">Become a Washer</button></li>
+        <li><button data-target="modal3" class="btn js-modal-trigger waves-light">Sign Up</button></li>
         <li><button data-target="modal2" class="btn js-modal-trigger waves-light">Log In</button></li>
       </ul>
 
@@ -36,7 +37,18 @@
   </nav><!-- nav end -->
 
 <!-- MODAL -->
-  <div id="modal1" class="modal">
+
+<div id="modal1" class="modal">
+    <div class="modal-content">
+      <%= render "devise/shared/washer" %>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
+
+
+  <div id="modal3" class="modal">
     <div class="modal-content">
       <%= render "devise/shared/new" %>
     </div>

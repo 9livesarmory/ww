@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   get '/search', to: 'searches#index'
 
+  get '/:merchant_id/orders', to: 'orders#index', as: 'merchant_orders'
+
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

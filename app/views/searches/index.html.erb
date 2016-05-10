@@ -9,10 +9,6 @@
   	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.css' rel='stylesheet' />
-    <style>
-        body { margin:0; padding:0; }
-        #map { position:absolute; top:0; bottom:0; width:100%; }
-    </style>
 </head>
 <body>
 
@@ -23,20 +19,20 @@
       <ul class="right hide-on-med-and-down">
         <li><a href="#">Profile</a></li>
         <li><a href="#">Support</a></li>
-        <li><div><%= form_for @search do |f| %>
-                <%= f.label :search %>
-                <%= f.text_field :search, placeholder: "Zipcode" %>
-                <%= f.button %>
-            <% end %>
+        <li><div class="nav-search"><%= form_tag("/search", method: "get") do %>
+                  <%= label_tag(:search, "Zipcode") %>
+                  <%= text_field_tag(:search) %>
+                  <%= submit_tag("Search") %>
+                  <% end %>
             </div></li>
-            
-        <li><button data-target="modal2" class="btn js-modal-trigger waves-light">Log Out</button></li>
+
+        <li><button data-target="modal2" class="btn js-modal-trigger waves-light ">
+          <%= link_to 'Log Out',  destroy_user_session_path, :method => :delete %></button></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
         <li><a href="#">How it Works</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#">Help</a></li>
         <li><a href="#" class="waves-effect waves-light btn">Sign In</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -46,7 +42,7 @@
 	
 	<div class="row">
     	<div class="col s3 filter"><h3>Filters</h3>
-      		<div><span>Wash and Fold</span></div>
+      <div><span>Wash and Fold</span></div>
 			<div><span>Ironing</span></div>
 			<div><span>Dryel</span></div>
 			<div><span>Starch</span></div>
@@ -55,24 +51,23 @@
       <div class="col s9">
 
 		<div class="row">
-			<div class="col s12"><div><%= image_tag "mapsample.jpg", class: "js-map", alt: "map image"%></div><!-- <div id='map'>maaaap</div>
-				<script>
-					mapboxgl.accessToken = 'pk.eyJ1IjoiOWxpdmVzYXJtb3J5IiwiYSI6ImNpbnkzMjZlMjE3eDV1MmtqcGxvcmdubHkifQ.kYLWiYGj1Wzh6bY1srNPLQ';
-				var map = new mapboxgl.Map({
-    			container: 'map', // container id
-    			style: 'mapbox://styles/mapbox/streets-v8', //stylesheet location
-    			center: [-74.50, 40], // starting position
-    			zoom: 9 // starting zoom
-				});
-				</script> -->
+			<div class="col s12">
+          <div id="map"></div>
 			</div>
-			
-
 		</div>
 
-		<div class="row">
-			<div class="col s12">Search Results</div>
+		
+    <div class="row">
+			<div class="col s12">
+          <h2>Merchants Near You</h2>
+          <% @merchants.each do |merchant| %>
+            <%= merchant.first_name %> <br>
+            <% end %>
+            
+      </div>
 		</div>
+
+
 	</div>
 	</div>
 

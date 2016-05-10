@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'geokit-rails'
+
 gem 'pg' #switched to postgresql for heroku
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
