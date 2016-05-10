@@ -21,6 +21,6 @@ function initMap() {
 
 $( document ).ready(function() {
     
-//initMap();
+initMap();
 	
 });
