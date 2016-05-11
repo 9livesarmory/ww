@@ -37,10 +37,10 @@ function searchMap(){  // internal call for user location data
 			console.log("success")
 			console.log(mapData);
 
-			mapData.forEach(function (merchant) {
+			mapData.forEach(function (merchantObject) {
 				var html = `
 				<li>
-					${merchant.name}
+					${merchantObject.first_name}
 				</li>`;
 				$('.js-merchantDisplay').append(html);
 			})
