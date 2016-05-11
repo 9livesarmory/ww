@@ -31,7 +31,7 @@ function searchMap(){  // internal call for user location data
 
 	$.ajax ({
 		type: "POST",
-		url: "http://localhost:3000/api/search_merchants", 
+		url: "/api/search_merchants",
 		data: {location: locationSearch, distance: distanceSearch},
 		success: function(mapData){
 			console.log("success")
