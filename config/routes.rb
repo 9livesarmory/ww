@@ -5,8 +5,14 @@ Rails.application.routes.draw do
   get '/search', to: 'searches#index'
 
   get '/:merchant_id/orders', to: 'orders#index', as: 'merchant_orders'
-
+  
   devise_for :users
+  
+  scope "/api" do
+    post '/search_merchants', to: 'searches#search_merchants'
+  end
+
+end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -61,4 +67,4 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end
+
