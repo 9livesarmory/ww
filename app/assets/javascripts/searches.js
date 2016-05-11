@@ -25,7 +25,7 @@ function initMap() {   //gmaps api
 
 function searchMap(){  // internal call for user location data
 	event.preventDefault();
-	var locationSearch = '33172'
+	var locationSearch = $('.js-mapvalue').val();
 	var distanceSearch = 10;
 
 

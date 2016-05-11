@@ -11,7 +11,7 @@ class SearchesController < ApplicationController
 	def search_merchants
 		location = params[:location]
 		distance = params[:distance]
-		merchant_radius = User.within(10, :origin => '100 Spear St, San Francisco, CA').where(role: "merchant")
+		merchant_radius = User.within(10, :origin => params[:location]).where(role: "merchant")
 		#merchant_radius = User.within(distance, :origin => location).where(role: "merchant")
 		#merchants = User.find(:all, :origin=>'#{zipcode}', :conditions=>'distance<10').where(role:"merchant")
 		unless merchant_radius
