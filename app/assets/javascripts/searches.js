@@ -37,6 +37,11 @@ function searchMap(){  // internal call for user location data
 			console.log("success")
 			console.log(mapData);
 
+			var html = `
+				<li>
+					${mapData.name}
+				</li>`;
+				$('.js-merchantDisplay').append(html);
 			var lat = parseFloat(lat);
 			var lng = parseFloat(lng);
 
