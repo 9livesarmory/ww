@@ -9,9 +9,9 @@ function initMap() {   //gmaps api
 
 
 function getLocation(latitude,longitude) {
-	var lat = latitude;
-	var long = longitude;
-	var myLatLng = {lat: lat, lng: long};
+	var myLat = latitude;
+	var myLng = longitude;
+	var myLatLng = {lat: `${myLat}`, lng: `${myLng}`;
 		createMap(myLatLng);
 }
 
