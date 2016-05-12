@@ -1,23 +1,23 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
-function initMap() {   //gmaps api
-  	var myLatLng = {lat: 25.7735031, lng: -80.133472};
+// function initMap() {   //gmaps api
+//   	var myLatLng = {lat: 25.7735031, lng: -80.133472};
 
-  	// Create a map object and specify the DOM element for display.
-  	var map = new google.maps.Map(document.getElementById('map'), {
-    	center: myLatLng,
-    	scrollwheel: true,
-    	zoom: 15
-  	});
+//   	// Create a map object and specify the DOM element for display.
+//   	var map = new google.maps.Map(document.getElementById('map'), {
+//     	center: myLatLng,
+//     	scrollwheel: true,
+//     	zoom: 15
+//   	});
 
-  	// Create a marker and set its position.
-  	var marker = new google.maps.Marker({
-    	map: map,
-    	position: myLatLng,
-    	title: 'Hello World!'
-  });
-}
+//   	// Create a marker and set its position.
+//   	var marker = new google.maps.Marker({
+//     	map: map,
+//     	position: myLatLng,
+//     	title: 'Hello World!'
+//   });
+// }
 
 //------------------------------------------
 
