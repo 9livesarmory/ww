@@ -93,6 +93,7 @@ function locationPoints(locationSearch) { // internal call for user location dat
 				<li>
 					${merchantObject.first_name}
 				</li>`;
+				$('.js-merchantDisplay').empty();
 				$('.js-merchantDisplay').append(html);
 			})
 
