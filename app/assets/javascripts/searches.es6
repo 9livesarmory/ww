@@ -3,8 +3,6 @@
 
 function initMap() {   //gmaps api
  	getLocation(); //set lat and long
- 	createMap();  // Create a map object and specify the DOM element for display.
- 	mapMarker(); // Create a marker and set its position.
 }
 
 //----------------------------------------------
@@ -12,19 +10,21 @@ function initMap() {   //gmaps api
 
 function getLocation() {
 	var myLatLng = {lat: 25.7735031, lng: -80.133472};
+		createMap(myLatLng);
 }
 
 
-function createMap(){
+function createMap(myLatLng){
 	// Create a map object and specify the DOM element for display.
 	var map = new google.maps.Map(document.getElementById('map'), {
     	center: myLatLng,
     	scrollwheel: true,
     	zoom: 15
   	});
+  	mapMarker(map, myLatLng);
 }
 	
-function mapMarker(){
+function mapMarker(map, myLatLng){
 	// Create a marker and set its position.
 	var marker = new google.maps.Marker({
     	map: map,
