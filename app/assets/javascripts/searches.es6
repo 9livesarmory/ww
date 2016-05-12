@@ -46,8 +46,8 @@ var coodinates = locationSearch
 		success: function(coordData){
 			console.log("success")
 			console.log(coordData);
-			var lat = data.results[0].geometry.location.lat
-			var lng = data.results[0].geometry.location.lng
+			var lat = coorData.results[0].geometry.location.lat
+			var lng = coorData.results[0].geometry.location.lng
 			getLocation(latitude,longitude);
 
 		},
