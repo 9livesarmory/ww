@@ -11,7 +11,7 @@ function initMap() {   //gmaps api
 function getLocation(latitude,longitude) {
 	var myLat = latitude;
 	var myLng = longitude;
-	var myLatLng = {lat: `${myLat}`, lng: `${myLng}`;
+	var myLatLng = {lat: myLat, lng: myLng};
 		createMap(myLatLng);
 }
 
@@ -104,8 +104,8 @@ function displayPosition (data){
 
 	var lat = parseFloat(data.coords.latitude);
 	var lng = parseFloat(data.coords.longitude);
-	console.log("The lat is " + lat);
-	console.log("The long is " + lng);
+	console.log(typeof lat);
+	console.log(typeof lng);
 
 	getLocation(); //set lat and long
 }
