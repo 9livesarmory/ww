@@ -46,6 +46,10 @@ var coodinates = locationSearch
 		success: function(coordData){
 			console.log("success")
 			console.log(coordData);
+			var lat = data.results[0].geometry.location.lat
+			var lng = data.results[0].geometry.location.lng
+			getLocation(latitude,longitude);
+
 		},
 		error: function(error){
 			console.log('error in locationCoordinates');
@@ -59,14 +63,16 @@ var coodinates = locationSearch
 
 
 
-function searchMap(){  // internal call for user location data
-	event.preventDefault();
+function searchMap(){
 	var locationSearch = $('.js-mapvalue').val();
-	var distanceSearch = 10;
-	
+	event.preventDefault();
 	locationCoordinates(locationSearch);
+	locationPoints(locationSearch);
+}
 
 
+function locationPoints(locationSearch) { // internal call for user location data
+	var distanceSearch = 10;
 	$.ajax ({
 		type: "POST",
 		url: "/api/search_merchants",
@@ -100,7 +106,6 @@ function searchMap(){  // internal call for user location data
 		}
 	})
 }
-
 //------------------------------------------
 
 function geolocationChecker() {
