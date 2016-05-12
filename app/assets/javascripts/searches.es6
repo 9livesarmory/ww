@@ -108,7 +108,7 @@ function displayPosition (data){
 	console.log(typeof lat);
 	console.log(typeof lng);
 
-	getLocation(); //set lat and long
+	getLocation(lat,lng); //set lat and long
 }
 
 
