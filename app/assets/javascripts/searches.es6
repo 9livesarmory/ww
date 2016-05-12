@@ -37,6 +37,24 @@ function mapMarker(map, myLatLng){
 }
 //------------------------------------------
 
+function locationCoordinates(locationSearch) {
+
+var coodinates = locationSearch
+	$.ajax ({
+		type: "GET",
+		url: `https://maps.googleapis.com/maps/api/geocode/json?address=${coodinates}`,
+		success: function(coordData){
+			console.log("success")
+			console.log(coordData);
+		},
+		error: function(error){
+			console.log('error in locationCoordinates');
+			console.log(error.responseJSON);
+		}
+	})
+}
+
+
 //------------------------------------------
 
 
@@ -45,6 +63,8 @@ function searchMap(){  // internal call for user location data
 	event.preventDefault();
 	var locationSearch = $('.js-mapvalue').val();
 	var distanceSearch = 10;
+	
+	locationCoordinates(locationSearch);
 
 
 	$.ajax ({
@@ -70,6 +90,8 @@ function searchMap(){  // internal call for user location data
 				$('.js-merchantDisplay').append(html);
 			})
 
+			//getLocation(latitude,longitude);
+
 	
 		},
 		error: function(error){
@@ -92,7 +114,6 @@ function geolocationChecker() {
 		alert("Oops, you don't have Geolocation. Time to upgrade your browser");
 	}
 }
-
 
 function displayPosition (data){
 	console.log("Got position");
