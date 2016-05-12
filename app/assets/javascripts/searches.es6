@@ -102,8 +102,8 @@ function displayPosition (data){
 	//$(".js-set-lat").text(data.coords.latitude);
 	//$(".js-set-long").text(data.coords.longitude);
 
-	var lat = data.coords.latitude;
-	var lng = data.coords.longitude;
+	var lat = parseFloat(data.coords.latitude);
+	var lng = parseFloat(data.coords.longitude);
 	console.log("The lat is " + lat);
 	console.log("The long is " + lng);
 
