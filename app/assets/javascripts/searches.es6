@@ -12,6 +12,7 @@ function getLocation(latitude,longitude) {
 	var myLat = latitude;
 	var myLng = longitude;
 	var myLatLng = {lat: myLat, lng: myLng};
+	console.log(myLatLng);
 		createMap(myLatLng);
 }
 
