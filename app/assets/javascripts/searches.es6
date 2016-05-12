@@ -64,8 +64,8 @@ var coodinates = locationSearch
 
 
 function searchMap(){
-	var locationSearch = $('.js-mapvalue').val();
 	event.preventDefault();
+	var locationSearch = $('.js-mapvalue').val();
 	locationCoordinates(locationSearch);
 	locationPoints(locationSearch);
 }
