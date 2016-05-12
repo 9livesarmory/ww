@@ -2,14 +2,16 @@
 // All this logic will automatically be available in application.js.
 
 function initMap() {   //gmaps api
- 	getLocation(); //set lat and long
+	geolocationChecker();
 }
 
 //----------------------------------------------
 
 
-function getLocation() {
-	var myLatLng = {lat: 25.7735031, lng: -80.133472};
+function getLocation(latitude,longitude) {
+	var lat = latitude;
+	var long = longitude;
+	var myLatLng = {lat: lat, lng: long};
 		createMap(myLatLng);
 }
 
@@ -32,7 +34,7 @@ function mapMarker(map, myLatLng){
     	title: 'Hello World!'
   });
 }
-
+//------------------------------------------
 
 //------------------------------------------
 
@@ -57,6 +59,8 @@ function searchMap(){  // internal call for user location data
 				//merchantObject.zipcode
 				//merchantObject.city
 				//merchantObject.street
+				var lat = parseFloat(merchantObject.lat)
+				var lng = parseFloat(merchantObject.lng)
 
 				var html = `
 				<li>
@@ -65,9 +69,7 @@ function searchMap(){  // internal call for user location data
 				$('.js-merchantDisplay').append(html);
 			})
 
-			//var lat = parseFloat(lat);
-			//var lng = parseFloat(lng);
-
+	
 		},
 		error: function(error){
 			console.log('error in SearchMap');
@@ -78,8 +80,50 @@ function searchMap(){  // internal call for user location data
 
 //------------------------------------------
 
+function geolocationChecker() {
+	if ("geolocation" in navigator) {
+		console.log("Geolocation is available");
+
+		navigator.geolocation.getCurrentPosition(displayPosition,showPositionError);
+	}
+
+	else {
+		alert("Oops, you don't have Geolocation. Time to upgrade your browser");
+	}
+}
+
+
+function displayPosition (data){
+	console.log("Got position");
+	console.log(data);  //pull all data to analyze
+	//console.log(data.coords.latitude);  pull latitude dataset to analyze
+	//console.log(data.coords.longitude); pull longitude dataset to analyze
+
+	//$(".js-set-lat").text(data.coords.latitude);
+	//$(".js-set-long").text(data.coords.longitude);
+
+	var lat = data.coords.latitude;
+	var lng = data.coords.longitude;
+	console.log("The lat is " + lat);
+	console.log("The long is " + lng);
+
+	getLocation(); //set lat and long
+}
+
+
+function showPositionError(error) {
+	console.log("Failed to get position :( ");
+	console.log(error);
+}
+
+
+//------
+
 $( document ).ready(function() {
+
 
 $('.js-mapsearch').on('submit', searchMap); //onclick callback
 	
 });
+
+//--------------
