@@ -80,7 +80,7 @@ function locationPoints(locationSearch) { // internal call for user location dat
 		success: function(mapData){
 			console.log("success")
 			console.log(mapData);
-
+			$('.js-merchantDisplay').empty();
 			mapData.forEach(function (merchantObject) {
 				//merchantObject.state
 				//merchantObject.zipcode
@@ -93,7 +93,6 @@ function locationPoints(locationSearch) { // internal call for user location dat
 				<li>
 					${merchantObject.first_name}
 				</li>`;
-				$('.js-merchantDisplay').empty();
 				$('.js-merchantDisplay').append(html);
 			})
 
