@@ -7,8 +7,43 @@ function initMap() {   //gmaps api
 
 //----------------------------------------------
 
+function geolocationChecker() { //browser geolocation data pull
+	if ("geolocation" in navigator) {
+		console.log("Geolocation is available");
 
-function getLocation(latitude,longitude) {
+		navigator.geolocation.getCurrentPosition(displayPosition,showPositionError);
+	}
+
+	else {
+		alert("Oops, you don't have Geolocation. Time to upgrade your browser");
+	}
+}
+
+function displayPosition (data){
+	console.log("Got position");
+	console.log(data);  //pull all data to analyze
+	//console.log(data.coords.latitude);  pull latitude dataset to analyze
+	//console.log(data.coords.longitude); pull longitude dataset to analyze
+
+	var lat = parseFloat(data.coords.latitude);
+	var lng = parseFloat(data.coords.longitude);
+	console.log(typeof lat);
+	console.log(typeof lng);
+
+	getLocation(lat,lng); //set lat and long into gmaps
+}
+
+
+function showPositionError(error) {
+	console.log("Failed to get position :( ");
+	console.log(error);
+}
+
+
+//------------------------------------------------
+
+
+function getLocation(latitude,longitude) {//set geolocation data into gmaps
 	var myLat = latitude;
 	var myLng = longitude;
 	var myLatLng = {lat: myLat, lng: myLng};
@@ -24,22 +59,64 @@ function createMap(myLatLng){
     	scrollwheel: true,
     	zoom: 15
   	});
-  	mapMarker(map, myLatLng);
+  	//locationPoints(locationSearch, map);
+  	mapMarker(map,myLatLng);
 }
-	
-function mapMarker(map, myLatLng){
-	// Create a marker and set its position.
+
+
+function locationPoints(locationSearch) { // internal call for user location data based on search submit
+	var distanceSearch = 10;
+	$.ajax ({
+		type: "POST",
+		url: "/api/search_merchants",
+		data: {location: locationSearch, distance: distanceSearch},
+		success: function(mapData){
+			console.log("success")
+			console.log(mapData);
+			$('.js-merchantDisplay').empty();
+			mapData.forEach(function (merchantObject) {
+				//merchantObject.state
+				//merchantObject.zipcode
+				//merchantObject.city
+				//merchantObject.street
+				var lat = parseFloat(merchantObject.lat)
+				var lng = parseFloat(merchantObject.lng)
+				myLatLng = {lat: lat, lng: lng};
+
+				var html = `
+				<li>
+					${merchantObject.first_name}
+				</li>`;
+				$('.js-merchantDisplay').append(html);
+				//mapMarker(map, myLatLng);
+			})
+
+			//getLocation(latitude,longitude);
+
+		},
+		error: function(error){
+			console.log('error in SearchMap');
+			console.log(error.responseJSON);
+		}
+	})
+}
+
+// -----------------
+
+function mapMarker(map,myLatLng){
+	// Create a marker and set its position on gmaps
 	var marker = new google.maps.Marker({
     	map: map,
     	position: myLatLng,
-    	title: 'Hello World!'
+    	title: 'Washer!'
   });
 }
 //------------------------------------------
 
-function locationCoordinates(locationSearch) {
+function locationCoordinates(locationSearch) { //google api to convert string address data into lat long coordinates
 
-var coodinates = locationSearch
+var coodinates = locationSearch;
+
 	$.ajax ({
 		type: "GET",
 		url: `https://maps.googleapis.com/maps/api/geocode/json?address=${coodinates}`,
@@ -49,7 +126,6 @@ var coodinates = locationSearch
 			var latitude = coordData.results[0].geometry.location.lat
 			var longitude = coordData.results[0].geometry.location.lng
 			getLocation(latitude,longitude);
-
 		},
 		error: function(error){
 			console.log('error in locationCoordinates');
@@ -63,7 +139,7 @@ var coodinates = locationSearch
 
 
 
-function searchMap(){
+function searchMap(){  //on submit callback function to kick everything off
 	event.preventDefault();
 	var locationSearch = $('.js-mapvalue').val();
 	locationCoordinates(locationSearch);
@@ -71,7 +147,7 @@ function searchMap(){
 }
 
 
-function locationPoints(locationSearch) { // internal call for user location data
+function locationPoints(locationSearch, map) { // internal rails call for user location data
 	var distanceSearch = 10;
 	$.ajax ({
 		type: "POST",
@@ -90,10 +166,11 @@ function locationPoints(locationSearch) { // internal call for user location dat
 				var lng = parseFloat(merchantObject.lng)
 
 				var html = `
-				<li>
+				<a href="#"><div>
 					${merchantObject.first_name}
-				</li>`;
-				$('.js-merchantDisplay').append(html);
+				</div></a>`;
+				$('.js-merchantCard').append(html);
+				//mapMarker(map, myLatLng);
 			})
 
 			//getLocation(latitude,longitude);
@@ -108,43 +185,6 @@ function locationPoints(locationSearch) { // internal call for user location dat
 }
 //------------------------------------------
 
-function geolocationChecker() {
-	if ("geolocation" in navigator) {
-		console.log("Geolocation is available");
-
-		navigator.geolocation.getCurrentPosition(displayPosition,showPositionError);
-	}
-
-	else {
-		alert("Oops, you don't have Geolocation. Time to upgrade your browser");
-	}
-}
-
-function displayPosition (data){
-	console.log("Got position");
-	console.log(data);  //pull all data to analyze
-	//console.log(data.coords.latitude);  pull latitude dataset to analyze
-	//console.log(data.coords.longitude); pull longitude dataset to analyze
-
-	//$(".js-set-lat").text(data.coords.latitude);
-	//$(".js-set-long").text(data.coords.longitude);
-
-	var lat = parseFloat(data.coords.latitude);
-	var lng = parseFloat(data.coords.longitude);
-	console.log(typeof lat);
-	console.log(typeof lng);
-
-	getLocation(lat,lng); //set lat and long
-}
-
-
-function showPositionError(error) {
-	console.log("Failed to get position :( ");
-	console.log(error);
-}
-
-
-//------
 
 $( document ).ready(function() {
 

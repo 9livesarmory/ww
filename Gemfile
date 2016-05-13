@@ -1,7 +1,12 @@
 source 'https://rubygems.org'
+
+ruby '2.2.3'
+
 gem 'sprockets-es6'
 
 gem 'geokit-rails'
+
+gem 'jquery-timepicker-rails'
 
 gem 'pg' #switched to postgresql for heroku
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
