@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/search', to: 'searches#index'
 
   get '/:merchant_id/orders', to: 'orders#index', as: 'merchant_orders'
+
+  get '/:merchant_id/order/new', to: 'orders#new', as: 'new_order'
   
   devise_for :users
   

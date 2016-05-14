@@ -64,42 +64,42 @@ function createMap(myLatLng){
 }
 
 
-function locationPoints(locationSearch) { // internal call for user location data based on search submit
-	var distanceSearch = 10;
-	$.ajax ({
-		type: "POST",
-		url: "/api/search_merchants",
-		data: {location: locationSearch, distance: distanceSearch},
-		success: function(mapData){
-			console.log("success")
-			console.log(mapData);
-			$('.js-merchantDisplay').empty();
-			mapData.forEach(function (merchantObject) {
-				//merchantObject.state
-				//merchantObject.zipcode
-				//merchantObject.city
-				//merchantObject.street
-				var lat = parseFloat(merchantObject.lat)
-				var lng = parseFloat(merchantObject.lng)
-				myLatLng = {lat: lat, lng: lng};
+// function locationPoints(locationSearch) { // internal call for user location data based on search submit
+// 	var distanceSearch = 10;
+// 	$.ajax ({
+// 		type: "POST",
+// 		url: "/api/search_merchants",
+// 		data: {location: locationSearch, distance: distanceSearch},
+// 		success: function(mapData){
+// 			console.log("success")
+// 			console.log(mapData);
+// 			$('.js-merchantDisplay').empty();
+// 			mapData.forEach(function (merchantObject) {
+// 				//merchantObject.state
+// 				//merchantObject.zipcode
+// 				//merchantObject.city
+// 				//merchantObject.street
+// 				var lat = parseFloat(merchantObject.lat)
+// 				var lng = parseFloat(merchantObject.lng)
+// 				myLatLng = {lat: lat, lng: lng};
 
-				var html = `
-				<li>
-					${merchantObject.first_name}
-				</li>`;
-				$('.js-merchantDisplay').append(html);
-				//mapMarker(map, myLatLng);
-			})
+// 				var html = `
+// 				<li>
+// 					${merchantObject.first_name}
+// 				</li>`;
+// 				$('.js-merchantDisplay').append(html);
+// 				//mapMarker(map, myLatLng);
+// 			})
 
-			//getLocation(latitude,longitude);
+// 			//getLocation(latitude,longitude);
 
-		},
-		error: function(error){
-			console.log('error in SearchMap');
-			console.log(error.responseJSON);
-		}
-	})
-}
+// 		},
+// 		error: function(error){
+// 			console.log('error in SearchMap');
+// 			console.log(error.responseJSON);
+// 		}
+// 	})
+// }
 
 // -----------------
 
@@ -162,19 +162,23 @@ function locationPoints(locationSearch, map) { // internal rails call for user l
 				//merchantObject.zipcode
 				//merchantObject.city
 				//merchantObject.street
+				var merchant_id = merchantObject.id
+
 				var lat = parseFloat(merchantObject.lat)
 				var lng = parseFloat(merchantObject.lng)
 
+
 				var html = `
-				<a href="#"><div>
+				<a href="/${merchant_id}/order/new"><div class="js-singleMerchantCard">
 					${merchantObject.first_name}
 				</div></a>`;
+
 				$('.js-merchantCard').append(html);
+
 				//mapMarker(map, myLatLng);
 			})
 
 			//getLocation(latitude,longitude);
-
 	
 		},
 		error: function(error){
@@ -186,11 +190,22 @@ function locationPoints(locationSearch, map) { // internal rails call for user l
 //------------------------------------------
 
 
+function openOrderForm() {
+
+}
+
+
+
+
+//------------------------------------------
+
 $( document ).ready(function() {
 
 
-$('.js-mapsearch').on('submit', searchMap); //onclick callback
-	
+$('.js-mapsearch').on('submit', searchMap); //on-submit callback for merchants
+
+$('.js-singleMerchantCard').on('click', openOrderForm); //onclick for individual merchant order submit
+
 });
 
 //--------------
