@@ -16,8 +16,8 @@ before_action :authenticate_user!
 
 	def new
 		@newOrder = Order.new
-		@shirt=Item.where(" name = ? ", "shirt")
-		@pants=Item.where(" name = ? ", "pants")
+		@shirt=Item.find_by(" name = ? ", "shirt")
+		@pants=Item.find_by(" name = ? ", "pants")
 		render 'new'
 	end
 

@@ -1,5 +1,7 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
+var map = '';
+
 
 function initMap() {   //gmaps api
 	geolocationChecker();
@@ -13,7 +15,6 @@ function geolocationChecker() { //browser geolocation data pull
 
 		navigator.geolocation.getCurrentPosition(displayPosition,showPositionError);
 	}
-
 	else {
 		alert("Oops, you don't have Geolocation. Time to upgrade your browser");
 	}
@@ -52,8 +53,7 @@ function getLocation(latitude,longitude) {//set geolocation data into gmaps
 }
 
 
-function createMap(myLatLng){
-	// Create a map object and specify the DOM element for display.
+function createMap(myLatLng){  // Create a map object and specify the DOM element for display.
 	map = new google.maps.Map(document.getElementById('map'), {
     	center: myLatLng,
     	scrollwheel: true,
@@ -63,48 +63,9 @@ function createMap(myLatLng){
   	mapMarker(map,myLatLng);
 }
 
+// -------------------------------------------------------------------------------------
 
-// function locationPoints(locationSearch) { // internal call for user location data based on search submit
-// 	var distanceSearch = 10;
-// 	$.ajax ({
-// 		type: "POST",
-// 		url: "/api/search_merchants",
-// 		data: {location: locationSearch, distance: distanceSearch},
-// 		success: function(mapData){
-// 			console.log("success")
-// 			console.log(mapData);
-// 			$('.js-merchantDisplay').empty();
-// 			mapData.forEach(function (merchantObject) {
-// 				//merchantObject.state
-// 				//merchantObject.zipcode
-// 				//merchantObject.city
-// 				//merchantObject.street
-// 				var lat = parseFloat(merchantObject.lat)
-// 				var lng = parseFloat(merchantObject.lng)
-// 				myLatLng = {lat: lat, lng: lng};
-
-// 				var html = `
-// 				<li>
-// 					${merchantObject.first_name}
-// 				</li>`;
-// 				$('.js-merchantDisplay').append(html);
-// 				//mapMarker(map, myLatLng);
-// 			})
-
-// 			//getLocation(latitude,longitude);
-
-// 		},
-// 		error: function(error){
-// 			console.log('error in SearchMap');
-// 			console.log(error.responseJSON);
-// 		}
-// 	})
-// }
-
-// -----------------
-
-function mapMarker(map,myLatLng){
-	// Create a marker and set its position on gmaps
+function mapMarker(map,myLatLng){  // Create a marker and set its position on gmaps
 	var marker = new google.maps.Marker({
     	map: map,
     	position: myLatLng,
@@ -142,13 +103,14 @@ var coodinates = locationSearch;
 function searchMap(){  //on submit callback function to kick everything off
 	event.preventDefault();
 	var locationSearch = $('.js-mapvalue').val();
-	locationCoordinates(locationSearch);
-	locationPoints(locationSearch);
+	locationCoordinates(locationSearch);  //google api to convert string address data into lat long coordinates
+	locationPoints(locationSearch); // internal rails call for existing location data
 }
 
 
-function locationPoints(locationSearch, map) { // internal rails call for user location data
+function locationPoints(locationSearch) { // internal rails call for existing location data
 	var distanceSearch = 10;
+
 	$.ajax ({
 		type: "POST",
 		url: "/api/search_merchants",
@@ -156,7 +118,7 @@ function locationPoints(locationSearch, map) { // internal rails call for user l
 		success: function(mapData){
 			console.log("success")
 			console.log(mapData);
-			$('.js-merchantDisplay').empty();
+			$('.js-merchantCard').empty();
 			mapData.forEach(function (merchantObject) {
 				//merchantObject.state
 				//merchantObject.zipcode
@@ -166,7 +128,7 @@ function locationPoints(locationSearch, map) { // internal rails call for user l
 
 				var lat = parseFloat(merchantObject.lat)
 				var lng = parseFloat(merchantObject.lng)
-
+				var myLatLng = {lat: lat, lng: lng};
 
 				var html = `
 				<a href="/${merchant_id}/order/new"><div class="js-singleMerchantCard">
@@ -175,7 +137,7 @@ function locationPoints(locationSearch, map) { // internal rails call for user l
 
 				$('.js-merchantCard').append(html);
 
-				//mapMarker(map, myLatLng);
+				mapMarker(map, myLatLng);
 			})
 
 			//getLocation(latitude,longitude);
@@ -190,22 +152,16 @@ function locationPoints(locationSearch, map) { // internal rails call for user l
 //------------------------------------------
 
 
-function openOrderForm() {
+// function openOrderForm() {
 
-}
-
-
+// }
 
 
 //------------------------------------------
 
 $( document ).ready(function() {
 
-
-$('.js-mapsearch').on('submit', searchMap); //on-submit callback for merchants
-
-$('.js-singleMerchantCard').on('click', openOrderForm); //onclick for individual merchant order submit
-
+	$('.js-mapsearch').on('submit', searchMap); //on-submit callback for merchants
 });
 
 //--------------
