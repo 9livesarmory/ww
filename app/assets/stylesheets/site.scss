@@ -1,3 +1,75 @@
 // Place all the styles related to the site controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.nav-signed-out {
+	position:absolute;
+	z-index:1;
+	height:90px;
+	line-height:85px;
+	background-color:rgba(255,255,255,0) !important;
+	box-shadow: none;
+}
+
+.nav-signed-in {
+	background-color:#bbdefb;
+	height:90px;
+	line-height:85px;
+}
+
+.nav-logo {
+	width:230px;
+}
+
+.nav-small-logo {
+	width:100px;
+}
+
+.header_image {
+	height:100%;
+}
+
+.parallax-container {
+	height:99vh !important;
+	position:relative;
+}
+
+.nav-links {
+	width:95%;
+	margin: 0 0 0 30px !important;
+}
+
+.get-started {
+	height:80px;
+    background-color: rgba(0,0,0,0.6);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+}
+
+.tag-line {
+	display:inline-block;
+	margin-right:25px;
+	line-height:80px;
+}
+
+.modal-styling {
+	height:300px;
+}
+
+.washerregister-modal,
+.login-modal,
+.signup-modal {
+    padding: 50px !important;
+    max-height: 100% !important;
+    width: 55% !important;
+    margin: auto;
+    overflow-y: auto;
+}
+
+.image1-2-3 {
+	padding-top:50px !important;
+}
+

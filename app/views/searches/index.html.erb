@@ -1,98 +1,48 @@
 
-<!-- nav -->
-  <nav class="white" role="navigation">
-    <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo left">Wishywash</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Support</a></li>
-        <li><form class="js-mapsearch">
-        <div class="input-field">
-          <input class="js-mapvalue" id="search" type="search" required>
-          <label for="search"><i class="material-icons">search</i></label>
-          <i class="material-icons">close</i>
-        </div>
-      </form></li>
-        <li><button data-target="modal2" class="btn js-modal-trigger waves-light ">
-          <%= link_to 'Log Out',  destroy_user_session_path, :method => :delete %></button></li>
-      </ul>
-      </div>
-
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">How it Works</a></li>
-        <li><a href="#">Help</a></li>
-        <li><a href="#" class="waves-effect waves-light btn">Sign In</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
-  </nav><!-- nav end -->
-
 	
 	<div class="row">
-    	<div class="col s3 filter"><h3>Filters</h3>
-      <div><span>Wash and Fold</span></div>
-			<div><span>Ironing</span></div>
-			<div><span>Dryel</span></div>
-			<div><span>Starch</span></div>
-		</div>
+	<!-- filter section -->
+    	<div class="col s3 filter">
+    		<h4>Filters</h4>
+    			<h6>Wash Options</h6>
+        <form action="#">
+	    <p>
+	      <input type="checkbox" id="test1" />
+	      <label for="test1">Ironing</label>
+	    </p>
 
+	    <p>
+	      <input type="checkbox" id="test2" />
+	      <label for="test2">Red</label>
+	    </p>
+
+	    <p>
+	      <input type="checkbox" id="test3" />
+	      <label for="test3">Red</label>
+	    </p>
+
+	    <p>
+	      <input type="checkbox" id="test4" />
+	      <label for="test4">Dryel</label>
+	    </p>
+  	</form>
+
+		</div> 	<!-- filter section end-->
+
+		<!-- map section -->
       <div class="col s9">
-
 		<div class="row">
 			<div class="col s12">
-          <div id="map"></div>
+          		<div id="map"></div>
 			</div>
-		</div>
-
+		</div><!-- map section end -->
 		
-    <div class="row">
+		<!--merchant list section -->
+    	<div class="row">
 			<div class="col s12">
-          <h2>Merchants Near You</h2>
-          <div><div class="js-merchantCard"></div>
-          </div>
-      </div>
-		</div>
-
-
+          		<h2>Merchants Near You</h2>
+          			<div><div class="js-merchantCard"></div></div>
+     		</div>
+		</div> <!--merchant list section -->
 	</div>
-	</div>
-
-<!-- footer -->
-	<footer class="page-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Wishywash</h5>
-          <p class="grey-text text-lighten-4">blah</p>
-
-
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Menu</h5>
-          <ul>
-            <li><a class="white-text" href="#!">About</a></li>
-            <li><a class="white-text" href="#!">Support</a></li>
-            <li><a class="white-text" href="#!">FAQ</a></li>
-            <li><a class="white-text" href="#!">blah</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Instagram</a></li>
-            <li><a class="white-text" href="#!">Twitter</a></li>
-            <li><a class="white-text" href="#!">Support</a></li>
-            <li><a class="white-text" href="#!">blah</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-      Copyright <a class="brown-text text-lighten-3" href="http://materializecss.com">Wishywash 2016</a>
-      </div>
-    </div>
-  </footer>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBSqkdqAlz3zN3qnhYqMupzh2NQmlfXm0&callback=initMap"
-    async defer></script>
+</div>

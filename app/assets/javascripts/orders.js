@@ -3,12 +3,12 @@
 $(document).ready(function() {
     $('.js-orderSelect-dropdown').material_select();
 
-    $('.js-calcPrice').focusOut(showFinalPrice);
+    //$('.js-calcPrice').focusOut(showFinalPrice);
   });
 
-function showFinalPrice (event) {
-		var quantity = event.currentTarget;
-		console.log(currentTarget);
+function showFinalPrice () {
+		// var quantity = event.currentTarget;
+		// console.log(currentTarget);
 
 	// if (bottom_total !== nil) {
 	// 	bottom_total = parseInt($('#bottom_quantity').val());
@@ -16,15 +16,17 @@ function showFinalPrice (event) {
 	// else {
 	// 	bottom_total=0;
 	// }
-	// tops_total = parseInt($('#top_quantity').val());
-	// dresses_total = parseInt($('#dress_quantity').val());
-	// totalprice = (bottom_total + tops_total + dresses_total);
+	// var top_quantity = parseInt($('#top_quantity').val());
+	// var bottom_quantity = parseInt($('#bottom_quantity').val());
+	// var dress_quantity = parseInt($('#dress_quantity').val());
+	// var totalprice = (bottom_total + tops_total + dresses_total);
+	var totalprice = 10;
 
-	// var html = `
-	// 			<div>
-	// 				<h5>Total: ${totalprice}</h5>
-	// 			</div>`;
+	var html = `
+				<div>
+					<h5>Total: ${totalprice}</h5>
+				</div>`;
 	
-	// $('.js-total-price').append(html);
+	$('.js-total-price').append(html);
 
 }

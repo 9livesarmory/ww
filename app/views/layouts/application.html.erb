@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
   <title>Wishywash</title>
 
-  <%= favicon_link_tag 'favicon.ico', rel: 'shortcut icon', type: 'image/x-icon' %>
+  <%= favicon_link_tag 'favicon.png', rel: 'shortcut icon' , type: 'image/png' %>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
   <%= stylesheet_link_tag 'application', media: 'all' %>
@@ -14,7 +14,136 @@
 </head>
 <body>
 
+<% if user_signed_in? %>
+<!-- nav -->
+  <nav role="navigation" class="nav-signed-in">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo left "><%= image_tag("W.png", alt: "brand icon", class: "nav-small-logo") %></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Support</a></li>
+        <li><form class="js-mapsearch">
+        <div class="input-field">
+          <input class="js-mapvalue" id="search" type="search" required>
+          <label for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form></li>
+        <li><button data-target="modal2" class="btn js-modal-trigger waves-light ">
+          <%= link_to 'Log Out',  destroy_user_session_path, :method => :delete %></button></li>
+      </ul>
+      </div>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">How it Works</a></li>
+        <li><a href="#">Help</a></li>
+        <li><a href="#" class="waves-effect waves-light btn">Sign In</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav><!-- nav end -->
+
+<% else %>
+
+<!-- nav -->
+  <nav role="navigation" class="nav-signed-out">
+    <div class="nav-wrapper container nav-links">
+      <a id="logo-container" href="#" class="brand-logo left nav-logo"><%= image_tag("wishywash-logo.png", alt: "brand icon", class: "nav-logo") %></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">How it Works</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><button data-target="modal1" class="btn js-modal-trigger waves-light">Become a Washer</button></li>
+        <li><button data-target="modal3" class="btn js-modal-trigger waves-light">Sign Up</button></li>
+        <li><button data-target="modal2" class="btn js-modal-trigger waves-light">Log In</button></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">How it Works</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#" class="waves-effect waves-light btn">Sign In</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav><!-- nav end --> 
+
+ <!-- MODALS -->
+
+  <div id="modal1" class="modal washerregister-modal">
+    <div class="modal-content">
+      <%= render "devise/shared/washer" %>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat"></a>
+    </div>
+  </div>
+
+  <div id="modal3" class="modal signup-modal">
+    <div class="modal-content">
+      <%= render "devise/shared/new" %>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat"></a>
+    </div>
+  </div>
+
+  <div id="modal2" class="modal login-modal">
+    <div class="modal-content">
+      <%= render "devise/shared/login" %>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat"></a>
+    </div>
+  </div>
+<!-- MODAL END -->
+
+<% end %>
+
+
+
+
 <%= yield %>
+
+<!-- footer -->
+	<footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Wishywash</h5>
+          <p class="grey-text text-lighten-4">blah</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Menu</h5>
+          <ul>
+            <li><a class="white-text" href="#!">About</a></li>
+            <li><a class="white-text" href="#!">Support</a></li>
+            <li><a class="white-text" href="#!">FAQ</a></li>
+            <li><a class="white-text" href="#!">blah</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Instagram</a></li>
+            <li><a class="white-text" href="#!">Twitter</a></li>
+            <li><a class="white-text" href="#!">Support</a></li>
+            <li><a class="white-text" href="#!">blah</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Copyright <a class="brown-text text-lighten-3" href="http://materializecss.com">Wishywash 2016</a>
+      </div>
+    </div>
+  </footer>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBSqkdqAlz3zN3qnhYqMupzh2NQmlfXm0&callback=initMap"
+    async defer></script>
 
 <script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4="   crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>

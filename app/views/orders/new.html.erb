@@ -1,83 +1,62 @@
+<h1>Place your Order</h1>
 
-<!-- nav -->
-  <nav class="white" role="navigation">
-    <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo left">Wishywash</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Support</a></li>
-        <li><form class="js-mapsearch">
-        <div class="input-field">
-          <input class="js-mapvalue" id="search" type="search" required>
-          <label for="search"><i class="material-icons">search</i></label>
-          <i class="material-icons">close</i>
-        </div>
-      </form></li>
-        <li><button data-target="modal2" class="btn js-modal-trigger waves-light ">
-          <%= link_to 'Log Out',  destroy_user_session_path, :method => :delete %></button></li>
-      </ul>
-      </div>
-
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">How it Works</a></li>
-        <li><a href="#">Help</a></li>
-        <li><a href="#" class="waves-effect waves-light btn">Sign In</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
-  </nav><!-- nav end -->
-
-
-	<div class=""></div>
-
+<!-- tops section -->
+	<div><%= image_tag("shirt.png", :alt => "shirt icon") %></div>
   <div style="height:150px; width:150px;">
  <div class="input-field col s9">
     <select class="js-orderSelect-dropdown" name="tops">
-      <option value="" disabled selected>Pick Your Tops</option>
-      <option value="1">T-Shirt</option>
+      <option value="" disabled selected>Pick Your Type</option>
+      <option value="<%= @shirt.price %>">T-Shirt</option>
       <option value="2">Dress Shirt</option>
       <option value="3">Sweater</option>
       <option value="4">Polo</option>
     </select>
-    <label>Tops</label>
+    <label>Tops - $2 each</label>
   </div>
 		<div class="input-field col s6">
           <input placeholder="Number of ..." name="top_quantity" id="quan" type="text" class="validate">
           <label for="first_name">Quantity</label>
         </div>
-    </div>
+   </div>
+    <!-- tops section end -->
 
+<!-- bottoms section -->
+<div><%= image_tag("pants.png", :alt => "pants icon") %></div>
 <div style="height:150px; width:150px;">
  <div class="input-field col s9">
     <select class="js-orderSelect-dropdown" name="bottoms">
-      <option value="" disabled selected>Pick Your Bottoms</option>
+      <option value="" disabled selected>Pick Your Type</option>
       <option value="1">Jeans</option>
       <option value="2">Dress Pants</option>
       <option value="3">Skirt</option>
       <option value="4">Shorts</option>
     </select>
-    <label>Bottoms</label>
+    <label>Bottoms - $4 each</label>
   </div>
   		<div class="input-field col s6">
           <input placeholder="Number of ..." id="bottom_quantity" type="text" class="validate">
           <label for="first_name">Quantity</label>
         </div>
 	</div>
+	<!-- bottoms section end -->
 
-
+<!-- dress section -->
+<div><%= image_tag("dress.png", :alt => "dress icon") %></div>
 <div style="height:150px; width:150px;">
  <div class="input-field col s9">
     <select class="js-orderSelect-dropdown" name="dresses">
-      <option value="" disabled selected>Pick Your Dresses</option>
+      <option value="" disabled selected>Pick Your Type</option>
       <option value="1">Dress</option>
     </select>
-    <label>One-Piece Items</label>
+    <label>Dress - $6 each</label>
   </div>
   		<div class="input-field col s6">
           <input placeholder="Number of ..." id="dress_quantity" type="text" class="validate">
           <label for="first_name">Quantity</label>
         </div>
 </div>
+
+<!-- dress section end -->
 
 <div class="js-total-price"></div> 
 
