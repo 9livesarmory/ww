@@ -4,10 +4,12 @@ skip_before_action :verify_authenticity_token  #needs to be removed and add prot
 before_action :authenticate_user!
 
 	def index
-		#@current_merchant_orders=current_user.merchant_orders.where() ???
 		@merchant_id=params[:merchant_id]
+		@current_merchant = User.find_by("id = ?", @merchant_id)
 		@orders=Order.where("merchant_id = ?", @merchant_id)
 
+		#@client_names = User.joins(:orders).where("merchant_id = ?", @merchant_id)
+		#need to get client_ids associated with this merchant and then show the names
 		render 'index'
 	end
 

@@ -48,7 +48,8 @@ function getLocation(latitude,longitude) {//set geolocation data into gmaps
 	var myLat = latitude;
 	var myLng = longitude;
 	var myLatLng = {lat: myLat, lng: myLng};
-	console.log(myLatLng);
+
+	//console.log(myLatLng);
 		createMap(myLatLng);
 }
 
@@ -71,6 +72,7 @@ function mapMarker(map,myLatLng){  // Create a marker and set its position on gm
     	position: myLatLng,
     	title: 'Washer!'
   });
+	console.log(marker);
 }
 //------------------------------------------
 
@@ -131,8 +133,11 @@ function locationPoints(locationSearch) { // internal rails call for existing lo
 				var myLatLng = {lat: lat, lng: lng};
 
 				var html = `
-				<a href="/${merchant_id}/order/new"><div class="js-singleMerchantCard">
-					${merchantObject.first_name}
+				<a href="/${merchant_id}/order/new">
+				<div class="js-singleMerchantCard">
+					
+					<div> <img src= "<%= asset_path("grumpycat.jpg") %>" class="profile-circle circle"> </div>
+					<div> ${merchantObject.first_name} </div>
 				</div></a>`;
 
 				$('.js-merchantCard').append(html);
@@ -166,3 +171,5 @@ $( document ).ready(function() {
 });
 
 //--------------
+
+

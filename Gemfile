@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 ruby '2.2.3'
 
+gem 'stripe'
+
 gem 'sprockets-es6'
 
 gem 'geokit-rails'

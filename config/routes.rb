@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   post '/orders', to: 'orders#create'
   
+  resources :charges
+
   devise_for :users
   
   scope "/api" do
