@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
 #merch order controller
+skip_before_action :verify_authenticity_token  #needs to be removed and add protect from forgery!!
 before_action :authenticate_user!
 
 	def index
@@ -22,10 +23,9 @@ before_action :authenticate_user!
 	end
 
 	def create
-		#@top = 
-		#@bottom = 
-		#@address = 
-		#@newOrder=Order.create(params[:merchant_id])
+		@newOrder=Order.create(params[:merchant_id])
+
+		redirect_to(search_path)
 	end
 
 	def get_lineItems

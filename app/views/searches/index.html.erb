@@ -8,12 +8,12 @@
         <form action="#">
 	    <p>
 	      <input type="checkbox" id="test1" />
-	      <label for="test1">Ironing</label>
+	      <label for="test1">Wash & Fold</label>
 	    </p>
 
 	    <p>
 	      <input type="checkbox" id="test2" />
-	      <label for="test2">Red</label>
+	      <label for="test2">Iron</label>
 	    </p>
 
 	    <p>
@@ -30,17 +30,28 @@
 		</div> 	<!-- filter section end-->
 
 		<!-- map section -->
-      <div class="col s9">
+      <div class="col s9 map-container">
 		<div class="row">
-			<div class="col s12">
+			<div class="col s12 map-column">
           		<div id="map"></div>
 			</div>
 		</div><!-- map section end -->
 		
 		<!--merchant list section -->
     	<div class="row">
-			<div class="col s12">
-					<div class=""><h4>Pick a Washer Near You</h4></div>
+			<div class="col s12 merchant-listResults">
+					<div><h6 class="results-header">Pick a Washer Near You</h6>
+						<div class="sortby-dropdown">
+							<div class="input-field">
+							    <select class="js-sortby-dropdown" name="searchFilter">
+							      <option value="1">Distance</option>
+							      <option value="2>">Rating</option>
+							    </select>
+							    <label>Sort by</label>
+							</div>
+						</div>
+					</div>
+
           			<div><div class="js-merchantCard"></div></div>
      		</div>
 		</div> <!--merchant list section -->

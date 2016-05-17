@@ -3,8 +3,13 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #map {
   height:300px;
-  width:850px;
+  width:auto;
   background-color: #FFF;
+}
+
+.map-column,
+.map-container {
+	padding:0px !important;
 }
 
 .js-singleMerchantCard {
@@ -21,4 +26,54 @@
 
 .filter {
   background-color: #efefef;
+  padding-right:0px !important;
+  height: 800px;
+
 }
+
+
+.filter-row {
+	background-color: #efefef;
+}
+
+.sortby-dropdown,
+.results-header {
+	display:inline-block;
+}
+
+.sortby-dropdown {
+	margin-left:60%;
+}
+
+// nav searchbar section
+.js-mapsearch {
+	width:380px !important;
+}
+
+.search-inputField {
+	width:320px !important;
+	display:inline-block !important;
+	border-bottom:0px !important;
+	line-height: 85px !important;
+    height: 1rem !important;
+	background-color: #bbdefb !important;
+	font-size: 1rem !important;
+}
+
+.searchbox {
+	width:100% !important;
+}
+
+.searchbox-icon {
+	line-height:38px !important;
+	display:inline-block !important;
+	width:30px !important;
+	font-size:20px !important;
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color: rgb(225, 255, 225) !important;
+    background-image: none !important;
+    color: rgb(0, 0, 0) !important;
+}
+// nav searchbar section end

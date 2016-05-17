@@ -57,7 +57,7 @@ function createMap(myLatLng){  // Create a map object and specify the DOM elemen
 	map = new google.maps.Map(document.getElementById('map'), {
     	center: myLatLng,
     	scrollwheel: true,
-    	zoom: 15
+    	zoom: 13
   	});
   	//locationPoints(locationSearch, map);
   	mapMarker(map,myLatLng);
@@ -116,7 +116,7 @@ function locationPoints(locationSearch) { // internal rails call for existing lo
 		url: "/api/search_merchants",
 		data: {location: locationSearch, distance: distanceSearch},
 		success: function(mapData){
-			console.log("success")
+			console.log("success mapdata")
 			console.log(mapData);
 			$('.js-merchantCard').empty();
 			mapData.forEach(function (merchantObject) {
@@ -162,6 +162,7 @@ function locationPoints(locationSearch) { // internal rails call for existing lo
 $( document ).ready(function() {
 
 	$('.js-mapsearch').on('submit', searchMap); //on-submit callback for merchants
+	$('.js-sortby-dropdown').material_select();
 });
 
 //--------------

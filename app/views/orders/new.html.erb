@@ -1,9 +1,16 @@
-<h1>Place your Order</h1>
+<h5 class="center">Customize Your Order</h5>
+
+<div class="container">
+  <div class="row item-row">
+      <div class="col s12 m4 center item-order-card">
 
 <!-- tops section -->
+  <form action="/orders" method="post">
+   <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+   
 	<div><%= image_tag("shirt.png", :alt => "shirt icon") %></div>
-  <div style="height:150px; width:150px;">
- <div class="input-field col s9">
+  <div class="center">
+ <div class="input-field col s6 center">
     <select class="js-orderSelect-dropdown" name="tops">
       <option value="" disabled selected>Pick Your Type</option>
       <option value="<%= @shirt.price %>">T-Shirt</option>
@@ -19,11 +26,13 @@
         </div>
    </div>
     <!-- tops section end -->
+    </div>
 
+<div class="col s12 m4 center item-order-card">
 <!-- bottoms section -->
 <div><%= image_tag("pants.png", :alt => "pants icon") %></div>
-<div style="height:150px; width:150px;">
- <div class="input-field col s9">
+<div class="center">
+ <div class="input-field col s6 center">
     <select class="js-orderSelect-dropdown" name="bottoms">
       <option value="" disabled selected>Pick Your Type</option>
       <option value="<%= @pants.price %>">Jeans</option>
@@ -39,27 +48,39 @@
         </div>
 	</div>
 	<!-- bottoms section end -->
-
-<!-- dress section -->
-<div><%= image_tag("dress.png", :alt => "dress icon") %></div>
-<div style="height:150px; width:150px;">
- <div class="input-field col s9">
-    <select class="js-orderSelect-dropdown" name="dresses">
-      <option value="" disabled selected>Pick Your Type</option>
-      <option value="1">Dress</option>
-    </select>
-    <label>Dress - $6 each</label>
   </div>
-  		<div class="input-field col s6">
-          <input placeholder="Number of ..." id="dress_quantity" type="text" class="validate">
-          <label for="first_name">Quantity</label>
-        </div>
+
+<div class="col s12 m4 center item-order-card">
+<!-- dress section -->
+  <div><%= image_tag("dress.png", :alt => "dress icon") %></div>
+  <div class="center">
+   <div class="input-field col s6 center">
+      <select class="js-orderSelect-dropdown" name="dresses">
+        <option value="" disabled selected>Pick Your Type</option>
+        <option value="1">Dress</option>
+      </select>
+      <label>Dress - $6 each</label>
+    </div>
+    		<div class="input-field col s6">
+            <input placeholder="Number of ..." id="dress_quantity" type="text" class="validate">
+            <label for="first_name">Quantity</label>
+          </div>
+  </div>
+<!-- dress section end -->
 </div>
 
-<!-- dress section end -->
+</div>
+</div>
 
-<div class="js-total-price"></div> 
+ <div class="row">
+      <div class="col s12 center">
+          <h3><i class="mdi-content-send brown-text"></i></h3>
+          <h4>Total:</h4>
+          <div class="js-total-price"></div> 
+          <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+          </button>
+          </form>
+      </div>
+  </div>
 
-	<button class="btn waves-effect waves-light" type="submit" name="action">Submit
-    	<i class="material-icons right">send</i>
-    </button>
+

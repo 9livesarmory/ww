@@ -17,19 +17,21 @@
 <% if user_signed_in? %>
 <!-- nav -->
   <nav role="navigation" class="nav-signed-in">
-    <div class="nav-wrapper container">
+    <div class="nav-wrapper container signedIn-container">
       <a id="logo-container" href="#" class="brand-logo left "><%= image_tag("W.png", alt: "brand icon", class: "nav-small-logo") %></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Support</a></li>
-        <li><form class="js-mapsearch">
-        <div class="input-field">
-          <input class="js-mapvalue" id="search" type="search" required>
-          <label for="search"><i class="material-icons">search</i></label>
-          <i class="material-icons">close</i>
-        </div>
-      </form></li>
-        <li><button data-target="modal2" class="btn js-modal-trigger waves-light ">
+
+        <li class="search">
+          <form method="POST" action="/api/search_merchants" class="js-mapsearch">
+          <div class="searchbox">
+            <i class="material-icons searchbox-icon">search</i><input id="search" class="search-inputField js-mapvalue">
+          </div>
+          </form>
+        </li>
+        <li class="nav-profile"><a href="#">Profile</a></li>
+        <li class="nav-support"><a href="#">Support</a></li>
+
+        <li class="nav-logout"><button data-target="modal2" class="btn js-modal-trigger waves-light ">
           <%= link_to 'Log Out',  destroy_user_session_path, :method => :delete %></button></li>
       </ul>
       </div>
@@ -53,8 +55,8 @@
         <li><a href="#">How it Works</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Contact</a></li>
-        <!-- <li><button data-target="modal1" class="btn js-modal-trigger waves-light">Become a Washer</button></li>
-        <li><button data-target="modal3" class="btn js-modal-trigger waves-light">Sign Up</button></li> -->
+        <li><button data-target="modal1" class="btn js-modal-trigger waves-light">Become a Washer</button></li>
+        <li><button data-target="modal3" class="btn js-modal-trigger waves-light">Sign Up</button></li>
         <li><button data-target="modal2" class="btn js-modal-trigger waves-light">Log In</button></li>
       </ul>
 
