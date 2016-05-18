@@ -2,31 +2,40 @@
 // All this logic will automatically be available in application.js.
 $(document).ready(function() {
     $('.js-orderSelect-dropdown').material_select();
-
-    //$('.js-calcPrice').focusOut(showFinalPrice);
+    $('.js-quantity_validate').on('focusout', getFinalPrice);
   });
 
-// function showFinalPrice () {
-// 		// var quantity = event.currentTarget;
-// 		// console.log(currentTarget);
-
-// 	// if (bottom_total !== nil) {
-// 	// 	bottom_total = parseInt($('#bottom_quantity').val());
-// 	// }
-// 	// else {
-// 	// 	bottom_total=0;
-// 	// }
-// 	// var top_quantity = parseInt($('#top_quantity').val());
-// 	// var bottom_quantity = parseInt($('#bottom_quantity').val());
-// 	// var dress_quantity = parseInt($('#dress_quantity').val());
-// 	// var totalprice = (bottom_total + tops_total + dresses_total);
-// 	var totalprice = 10;
-
-// 	var html = `
-// 				<div>
-// 					<h5>Total: ${totalprice}</h5>
-// 				</div>`;
 	
-// 	$('.js-total-price').append(html);
+function getFinalPrice() {
 
-// }
+	var quantity = event.currentTarget;
+	console.log(quantity);
+
+	var shirt_quantity = $('.topQuantity').val();
+	var pants_quantity = $('.bottomQuantity').val();
+	var onepiece_quantity = $('.onepieceQuantity').val();
+
+	$.ajax ({
+		type: "POST",
+		url: "/api/item_prices",
+		data: {shirtQuantity: shirt_quantity, pantsQuantity: pants_quantity, onepieceQuantity: onepiece_quantity},
+		success: function(data){
+			$('.js-total-price').empty();
+			console.log("success")
+			//console.log(data);
+
+			var ordertotal = data;
+
+			var html = `
+				<div>
+					<h5>$${ordertotal}</h5>
+				</div>`;
+
+				$('.js-total-price').append(html);
+		},
+		error: function(error){
+			console.log('error in itemprice');
+			console.log(error.responseJSON);
+		}
+	})
+}

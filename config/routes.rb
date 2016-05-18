@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   
   scope "/api" do
     post '/search_merchants', to: 'searches#search_merchants'
+    post '/item_prices', to: 'orders#priceChecker'
   end
 
 end

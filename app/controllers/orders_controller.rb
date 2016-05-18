@@ -20,9 +20,11 @@ before_action :authenticate_user!
 
 	def new
 		@newOrder = Order.new
+
 		@shirt=Item.find_by(" name = ? ", "shirt")
 		@pants=Item.find_by(" name = ? ", "pants")
-		
+		@onepiece=Item.find_by(" name = ?", "onepiece")
+
 		render 'new'
 	end
 
@@ -31,6 +33,24 @@ before_action :authenticate_user!
 
 		redirect_to(search_path)
 	end
+
+
+	def priceChecker
+		shirt=Item.find_by(" name = ? ", "shirt")
+		pants=Item.find_by(" name = ? ", "pants")
+		onepiece=Item.find_by(" name = ?", "onepiece")
+
+
+		total_shirtPrice = ((params[:shirtQuantity].to_i) * shirt.price.to_i)
+		total_pantsPrice = ((params[:pantsQuantity].to_i) * pants.price.to_i)
+		total_onepiecePrice = ((params[:onepieceQuantity].to_i) * onepiece.price.to_i)
+
+		order_totalPrice = (total_shirtPrice) + (total_pantsPrice) + (total_onepiecePrice)
+
+		#render json: {shirts: total_shirtPrice, pants: total_pantsPrice, onepiece: total_onepiecePrice}, status: 201
+		render json: order_totalPrice, status: 201
+	end
+
 
 	def get_lineItems
 		location = params[:location]
@@ -47,6 +67,11 @@ before_action :authenticate_user!
 	end
 
 
+	private
+
+	def order_params
+		params.require(:order).permit(:merchant_id, :client_id)
+	end
 
 end
 

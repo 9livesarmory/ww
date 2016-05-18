@@ -8,8 +8,8 @@
 
 
 item1=Item.create(name:"shirt", price:"1.00")
-item2=Item.create(name:"pants", price:"5.00")
-item3=Item.create(name:"blouse", price:"10.00")
+item2=Item.create(name:"pants", price:"3.00")
+item3=Item.create(name:"onepiece", price:"5.00")
 item4=Item.create(name:"large items", price:"15.00")
 item5=Item.create(name:"dryel", price:"20.00")
 
