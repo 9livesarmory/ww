@@ -19,15 +19,18 @@
     height:110px;
 }
 
-.js-singleMerchantCard:hover { 
+.singleMerchantRow:hover { 
     background-color: #f2f2f2;
 }
 
+.singleMerchantRow {
+	margin:1% !important;
+}
 
 .filter {
   background-color: #efefef;
   padding-right:0px !important;
-  height: 800px;
+  height: 900px;
 
 }
 
@@ -80,5 +83,24 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 
 
 .profile-circle {
-	height:40px;
+	height:80px;
+	width:80px;
+}
+
+.profile-imageblock {
+	display:inline-block;
+	margin-top:1.5%;
+	display: -webkit-flex; /* Safari */
+    -webkit-align-items: center; /* Safari 7.0+ */
+    display: flex;
+    align-items: center;
+}
+
+.singleMerchantProfile {
+	margin:1% !important;
+	align-items: center;
+	display: -webkit-flex; /* Safari */
+    -webkit-align-items: center; /* Safari 7.0+ */
+    display: flex;
+    align-items: center;
 }

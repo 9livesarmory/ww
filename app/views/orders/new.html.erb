@@ -10,40 +10,27 @@
    
 	<div><%= image_tag("shirt.png", :alt => "shirt icon") %></div>
   <div class="center">
- <div class="input-field col s6 center">
-    <select class="js-orderSelect-dropdown" name="tops">
-      <option value="" disabled selected>Pick Your Type</option>
-      <option value="<%= @shirt.price %>">T-Shirt</option>
-      <option value="<%= @shirt.price %>">Dress Shirt</option>
-      <option value="<%= @shirt.price %>">Sweater</option>
-      <option value="<%= @shirt.price %>">Polo</option>
-    </select>
-    <label>Tops - $2 each</label>
+ <div class="col s6 center">
+    <div><h5>Tops $1</h5></div>
   </div>
-		<div class="input-field col s6">
-          <input placeholder="Number of ..." name="top_quantity" id="quan" type="text" class="validate">
+		<div class="input-field col s5">
+          <input placeholder="Number of.." name="top_quantity" type="text" class="validate">
           <label for="first_name">Quantity</label>
         </div>
    </div>
     <!-- tops section end -->
     </div>
 
+
 <div class="col s12 m4 center item-order-card">
 <!-- bottoms section -->
 <div><%= image_tag("pants.png", :alt => "pants icon") %></div>
 <div class="center">
- <div class="input-field col s6 center">
-    <select class="js-orderSelect-dropdown" name="bottoms">
-      <option value="" disabled selected>Pick Your Type</option>
-      <option value="<%= @pants.price %>">Jeans</option>
-      <option value="<%= @pants.price %>">Dress Pants</option>
-      <option value="<%= @pants.price %>">Skirt</option>
-      <option value="<%= @pants.price %>">Shorts</option>
-    </select>
-    <label>Bottoms - $4 each</label>
+ <div class="col s6 center">
+    <div><h5>Bottoms $3</h5></div>
   </div>
-  		<div class="input-field col s6">
-          <input placeholder="Number of ..." id="bottom_quantity" type="text" class="validate">
+  		<div class="input-field col s5">
+          <input placeholder="Number of.." name="bottom_quantity" type="text" class="validate">
           <label for="first_name">Quantity</label>
         </div>
 	</div>
@@ -54,15 +41,11 @@
 <!-- dress section -->
   <div><%= image_tag("dress.png", :alt => "dress icon") %></div>
   <div class="center">
-   <div class="input-field col s6 center">
-      <select class="js-orderSelect-dropdown" name="dresses">
-        <option value="" disabled selected>Pick Your Type</option>
-        <option value="1">Dress</option>
-      </select>
-      <label>Dress - $6 each</label>
+   <div class="col s6 center">
+      <div><h5>Onepiece $5</h5></div>
     </div>
-    		<div class="input-field col s6">
-            <input placeholder="Number of ..." id="dress_quantity" type="text" class="validate">
+    		<div class="input-field col s5">
+            <input placeholder="Number of.." name="onepiece_quantity" type="text" class="validate">
             <label for="first_name">Quantity</label>
           </div>
   </div>

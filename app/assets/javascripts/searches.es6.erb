@@ -131,14 +131,24 @@ function locationPoints(locationSearch) { // internal rails call for existing lo
 				var lat = parseFloat(merchantObject.lat)
 				var lng = parseFloat(merchantObject.lng)
 				var myLatLng = {lat: lat, lng: lng};
-
+			
 				var html = `
-				<a href="/${merchant_id}/order/new">
-				<div class="js-singleMerchantCard">
+
+				<div class="row singleMerchantRow">
+					<div class="col s12">
+						<a href="/${merchant_id}/order/new">
+						<div class="js-singleMerchantCard">
 					
-					<div> <img src= "<%= asset_path("grumpycat.jpg") %>" class="profile-circle circle"> </div>
-					<div> ${merchantObject.first_name} </div>
-				</div></a>`;
+					<div class="row singleMerchantProfile">
+						<div class=" col s3 profile-imageblock"> <img src= "/assets/`+merchantObject.profile_image+`" class="profile-circle circle"> </div>
+						<div class=" col s4 profile-infoblock"><span>${merchantObject.first_name}<span></div>
+						<div class=" col s2 profile-ratingsblock"><span>Not Yet Rated</span></div>
+						<div class=" col s2 profile-ratingsblock"><span>Not Yet Rated</span></div>
+					</div>
+						</a>
+					</div>
+					</div>
+				</div>`;
 
 				$('.js-merchantCard').append(html);
 

@@ -10,6 +10,7 @@ before_action :authenticate_user!
 
 		#@client_names = User.joins(:orders).where("merchant_id = ?", @merchant_id)
 		#need to get client_ids associated with this merchant and then show the names
+
 		render 'index'
 	end
 
@@ -21,6 +22,7 @@ before_action :authenticate_user!
 		@newOrder = Order.new
 		@shirt=Item.find_by(" name = ? ", "shirt")
 		@pants=Item.find_by(" name = ? ", "pants")
+		
 		render 'new'
 	end
 

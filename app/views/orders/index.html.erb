@@ -5,7 +5,8 @@
 <!-- active order section-->
         <div class="row">
           <div class="col s12 left">
-            <div><h6 class="results-header">Active orders</h6>
+          <h4 class="welcome-header center">Welcome back <%= @current_merchant.first_name %> </h4>
+            <div><h5 class="results-header">Active orders</h5>
               <div class="sortby-dropdown">
                 <div class="input-field">
                     <select class="js-sortby-dropdown" name="searchFilter">
@@ -16,8 +17,8 @@
                 </div>
               </div>  
           <h3><i class="mdi-content-send brown-text"></i></h3>
-                    <h4>Welcome back <%= @current_merchant.first_name %> </h4>
-                    <h5>Active Orders</h5>
+                    
+                    
                             <% @orders.each do |order| %>
                             <div class="row">
                               <div class="col s8 list-orderCard">
