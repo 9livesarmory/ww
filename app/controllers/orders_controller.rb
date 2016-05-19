@@ -47,7 +47,6 @@ before_action :authenticate_user!
 
 		order_totalPrice = (total_shirtPrice) + (total_pantsPrice) + (total_onepiecePrice)
 
-		#render json: {shirts: total_shirtPrice, pants: total_pantsPrice, onepiece: total_onepiecePrice}, status: 201
 		render json: order_totalPrice, status: 201
 	end
 

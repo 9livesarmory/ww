@@ -3,9 +3,9 @@
 $(document).ready(function() {
     $('.js-orderSelect-dropdown').material_select();
     $('.js-quantity_validate').on('focusout', getFinalPrice);
+    // $('.stripe-button').data('amount');
   });
 
-	
 function getFinalPrice() {
 
 	var quantity = event.currentTarget;
@@ -21,6 +21,7 @@ function getFinalPrice() {
 		data: {shirtQuantity: shirt_quantity, pantsQuantity: pants_quantity, onepieceQuantity: onepiece_quantity},
 		success: function(data){
 			$('.js-total-price').empty();
+			$('.js-stripe-price').empty();
 			console.log("success")
 			//console.log(data);
 
@@ -31,11 +32,18 @@ function getFinalPrice() {
 					<h5>$${ordertotal}</h5>
 				</div>`;
 
+			//var stripePrice = `Amount: $${ordertotal}`;
+
 				$('.js-total-price').append(html);
+				//$('.js-stripe-price').text(stripePrice);
 		},
 		error: function(error){
 			console.log('error in itemprice');
 			console.log(error.responseJSON);
 		}
 	})
+
+
+
 }
+
