@@ -3,6 +3,7 @@
 $(document).ready(function() {
     $('.js-orderSelect-dropdown').material_select();
     $('.js-quantity_validate').on('focusout', getFinalPrice);
+    $('.completeOrder-btnStyle').on('click', completeOrder);
     // $('.stripe-button').data('amount');
   });
 
@@ -32,18 +33,20 @@ function getFinalPrice() {
 					<h5>$${ordertotal}</h5>
 				</div>`;
 
-			//var stripePrice = `Amount: $${ordertotal}`;
+			var stripePrice = ordertotal;
 
 				$('.js-total-price').append(html);
-				//$('.js-stripe-price').text(stripePrice);
+				$('.stripe-button').data('amount').val(stripePrice);
 		},
 		error: function(error){
 			console.log('error in itemprice');
 			console.log(error.responseJSON);
 		}
 	})
+}
 
-
+function completeOrder() {
 
 }
+
 
