@@ -1,11 +1,60 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
-var map = '';
-
 
 function initMap() {   //gmaps api
-	geolocationChecker();
+	//Want to draw map first with generic location
+	var miamiLatitudeLongitude = new SuperMap();
+	miamiLatitudeLongitude.talk();
+	miamiLatitudeLongitude.createMap();
+	miamiLatitudeLongitude.mapMarker();
+	// console.log("Wtf")
+	// geolocationChecker();
+
+	// userChangesMap();
+
 }
+
+
+function SuperMap() {
+	this.lat = 25.772842;
+	this.lng = -80.191355;
+	this.latLng = {lat: this.lat, lng: this.lng};
+}
+
+//------------------------------------------
+
+SuperMap.prototype.createMap = function(){  // Create a map object and specify the DOM element for display.
+	var myself = this
+	this.map = new google.maps.Map(document.getElementById('map'), {
+    	center: myself.latLng,
+    	scrollwheel: true,
+    	zoom: 13
+  	});
+  	console.log(this.map)
+  	//locationPoints(locationSearch, map);
+  	//mapMarker(map,myLatLng);
+}
+
+// -------------------------------------------------------------------------------------
+
+SuperMap.prototype.mapMarker = function(){  // Create a marker and set its position on gmaps
+	var marker = new google.maps.Marker({
+    	map: this.map,
+    	position: this.latLng,
+    	title: 'Washer!'
+  });
+	console.log(marker);
+}
+//------------------------------------------
+SuperMap.prototype.talk = function(){
+	console.log("Made Super Map");
+	console.log(this.lat, " ", this.lng)
+}
+
+// var map = '';
+
+
+
 
 //----------------------------------------------
 
@@ -13,10 +62,13 @@ function geolocationChecker() { //browser geolocation data pull
 	if ("geolocation" in navigator) {
 		console.log("Geolocation is available");
 
-		navigator.geolocation.getCurrentPosition(displayPosition,showPositionError);
+		var usersLatitudeLongitude = navigator.geolocation.getCurrentPosition(displayPosition,showPositionError);
+		
+		return usersLatitudeLongitude;
 	}
 	else {
 		alert("Oops, you don't have Geolocation. Time to upgrade your browser");
+		return null;
 	}
 }
 
@@ -30,14 +82,16 @@ function displayPosition (data){
 	var lng = parseFloat(data.coords.longitude);
 	console.log(typeof lat);
 	console.log(typeof lng);
+	var usersGeolocatedLatitudeLongitude = getLocation(lat,lng); //set lat and long into gmaps
+	return usersGeolocatedLatitudeLongitude;
 
-	getLocation(lat,lng); //set lat and long into gmaps
 }
 
 
 function showPositionError(error) {
 	console.log("Failed to get position :( ");
 	console.log(error);
+	return null;
 }
 
 
@@ -47,34 +101,14 @@ function showPositionError(error) {
 function getLocation(latitude,longitude) {//set geolocation data into gmaps
 	var myLat = latitude;
 	var myLng = longitude;
-	var myLatLng = {lat: myLat, lng: myLng};
-
+	var userLatLng = {lat: myLat, lng: myLng};
+	return userLatLng;
 	//console.log(myLatLng);
-		createMap(myLatLng);
+		//createMap(myLatLng);
 }
 
 
-function createMap(myLatLng){  // Create a map object and specify the DOM element for display.
-	map = new google.maps.Map(document.getElementById('map'), {
-    	center: myLatLng,
-    	scrollwheel: true,
-    	zoom: 13
-  	});
-  	//locationPoints(locationSearch, map);
-  	mapMarker(map,myLatLng);
-}
 
-// -------------------------------------------------------------------------------------
-
-function mapMarker(map,myLatLng){  // Create a marker and set its position on gmaps
-	var marker = new google.maps.Marker({
-    	map: map,
-    	position: myLatLng,
-    	title: 'Washer!'
-  });
-	console.log(marker);
-}
-//------------------------------------------
 
 function locationCoordinates(locationSearch) { //google api to convert string address data into lat long coordinates
 
@@ -160,7 +194,7 @@ function locationPoints(locationSearch) { // internal rails call for existing lo
 		},
 		error: function(error){
 			console.log('error in SearchMap');
-			console.log(error.responseJSON);
+			console.log(error);
 		}
 	})
 }
@@ -176,7 +210,7 @@ function locationPoints(locationSearch) { // internal rails call for existing lo
 
 $( document ).ready(function() {
 
-	$('.js-mapsearch').on('submit', searchMap); //on-submit callback for merchants
+	// $('.js-mapsearch').on('submit', searchMap); //on-submit callback for merchants
 	$('.js-sortby-dropdown').material_select();
 });
 
